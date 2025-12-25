@@ -475,3 +475,53 @@ button {
   align-items: center;
   gap: 6px;
 }
+.dropDownDesc{
+  position: absolute;
+  
+  top: 5rem;
+  right: 15rem;
+  left: 50rem;
+  width: 30%;
+  padding: 20px;
+  border-radius: 20px;
+  background-color:white;
+  border: 2px solid black;
+}
+.dropDownDesc ::before{
+  content: '';
+  position: absolute;
+  top: -0.7rem;
+  right: 8.3rem;
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  background-color: white;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+
+}
+.dropDownDescR{
+  position: absolute;
+  
+  top: 5rem;
+  right: 8rem;
+  left: 56.6rem;
+  width: 30%;
+  padding: 20px;
+  border-radius: 20px;
+  background-color:white;
+  border: 2px solid black;
+}
+.dropDownDescR ::before{
+  content: '';
+  position: absolute;
+  top: -0.7rem;
+  right: 8.3rem;
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  background-color: white;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+
+}

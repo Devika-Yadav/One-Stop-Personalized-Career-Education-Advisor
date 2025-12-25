@@ -1,17 +1,22 @@
 // Home.js
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
+import Intitution_info from "./components/InstitutionInfo";
+import ResourceInfo from "./components/ResourceInfo";
 
 export default function Home() {
+  const [openIntitutionInfo,setOpenIntitutionInfo]=useState(false);
+  const [openResourceInfo,setOpenResourceInfo]=useState(false);
+
   return (
     <div className="home-page">
       {/* TOP BAR LIKE FIGMA */}
       <header className="top-bar">
         <div className="logo">Career and Education Advisor</div>
         <nav>
-          <button className="link-btn">Institutions</button>
-          <button className="link-btn">Resources</button>
+          <button className="link-btn" onClick={()=> setOpenIntitutionInfo(prev=> !prev)}>Institutions</button>
+          <button className="link-btn" onClick={()=> setOpenResourceInfo(prev=>!prev)}>Resources</button>
           <button className="link-btn">About us</button>
 
           {/* Register navigates to /register */}
@@ -19,6 +24,16 @@ export default function Home() {
             Register
           </Link>
         </nav>
+        {
+          openIntitutionInfo && (
+            <Intitution_info/>
+          )
+        }
+        {
+          openResourceInfo && (<ResourceInfo/>)
+        }
+        
+        
       </header>
 
       <main className="home-content">
