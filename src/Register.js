@@ -37,7 +37,18 @@ export default function Register() {
 
             <label>Confirm Password:</label>
             <input type="password" required />
+          {/* Role Selection */}
+  <div className="role-section">
+    <label>
+      <input type="radio" name="role" value="admin" />
+      Admin
+    </label>
 
+    <label>
+      <input type="radio" name="role" value="student" />
+      Student
+    </label>
+  </div>
             <button type="submit" className="primary-btn">
               Create account
             </button>

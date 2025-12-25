@@ -33,6 +33,18 @@ export default function Login() {
             <div className="small-text">
               Forget Password? <a href="#">Click here</a>
             </div>
+              <div className="role-section">
+    <label>
+      <input type="radio" name="role" value="admin" />
+      Admin
+    </label>
+
+    <label>
+      <input type="radio" name="role" value="student" />
+      Student
+    </label>
+  </div>
+ 
 
             <button type="submit" className="primary-btn">
               Login

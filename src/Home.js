@@ -92,20 +92,40 @@ export default function Home() {
 
         {/* Bottom stats row */}
         <section className="stats-row">
-          <div>
+          <div className="stat-box">
             <strong>50+</strong>
             <span>Career Options</span>
           </div>
-          <div>
+
+          <div className="divider"></div>
+
+          <div className="stat-box">
             <strong>45+</strong>
             <span>Courses</span>
           </div>
-          <div>
+
+          <div className="divider"></div>
+
+          <div className="stat-box">
             <strong>78+</strong>
             <span>Colleges/Institutions</span>
           </div>
         </section>
+
       </main>
+              <footer className="footer">
+  <div className="footer-left">
+    <p><strong>Contact us:</strong></p>
+    <p>Email: support@careeradvisor.com</p>
+    <p>Phone: +91-8309214468</p>
+  </div>
+
+  <div className="footer-right">
+        <p className="guidance">For guidance purposes only</p>
+        <p className="copyright">© 2025 Career & Education Advisor | Academic Project | All Rights Reserved</p>
+  </div>
+</footer>
+
     </div>
   );
 }
