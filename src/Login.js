@@ -31,7 +31,7 @@ export default function Login() {
             <input type="password" required />
 
             <div className="small-text">
-              Forget Password? <a href="#">Click here</a>
+              Forget Password? <Link to="/forgot-password">Click here</Link>
             </div>
               <div className="role-section">
     <label>
