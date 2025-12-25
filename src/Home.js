@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
-import Intitution_info from "./components/InstitutionInfo";
+import IntitutionInfo from "./components/InstitutionInfo";
 import ResourceInfo from "./components/ResourceInfo";
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
         </nav>
         {
           openIntitutionInfo && (
-            <Intitution_info/>
+            <IntitutionInfo/>
           )
         }
         {
