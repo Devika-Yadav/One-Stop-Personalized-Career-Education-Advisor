@@ -53,7 +53,6 @@ export default function Register() {
               Create account
             </button>
           </form>
-
           <div className="small-text center">
               Already have an account?{" "}
               <Link to="/login">Login</Link>   {/* <- change "/" to "/login" */}
