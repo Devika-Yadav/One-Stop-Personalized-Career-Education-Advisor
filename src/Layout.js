@@ -11,7 +11,7 @@ function Layout() {
 
   // hide header/footer on About, Register, and Login pages
   const hideHeaderFooter = 
-     
+     location.pathname === "/register" ||
     location.pathname === "/login";
 
   return (
