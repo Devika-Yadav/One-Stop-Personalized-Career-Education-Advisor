@@ -1,0 +1,36 @@
+.header {
+  background: #5ec8f2;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-register{
+    
+  background: rgb(43, 41, 41);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+
+}
+.btn-logout {
+  background: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.profile-icon {
+  display: inline-block;
+  margin: 0 10px;
+}

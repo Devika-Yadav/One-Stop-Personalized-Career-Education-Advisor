@@ -1,14 +1,27 @@
 // Login.js
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./styles.css"; // optional
+import "./styles.css";
 
 export default function Login() {
   const navigate = useNavigate();
 
+  const [role, setRole] = useState("");
+
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/"); // instead of "/home"
+
+    if (!role) {
+      alert("Please select a role");
+      return;
+    }
+
+    // ✅ Set authentication state
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("userRole", role);
+
+    // Redirect after login
+    navigate("/");
   };
 
   return (
@@ -33,18 +46,29 @@ export default function Login() {
             <div className="small-text">
               Forget Password? <Link to="/forgot-password">Click here</Link>
             </div>
-              <div className="role-section">
-    <label>
-      <input type="radio" name="role" value="admin" />
-      Admin
-    </label>
 
-    <label>
-      <input type="radio" name="role" value="student" />
-      Student
-    </label>
-  </div>
- 
+            {/* ROLE SELECTION */}
+            <div className="role-section">
+              <label>
+                <input
+                  type="radio"
+                  name="role"
+                  value="admin"
+                  onChange={(e) => setRole(e.target.value)}
+                />
+                Admin
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="role"
+                  value="student"
+                  onChange={(e) => setRole(e.target.value)}
+                />
+                Student
+              </label>
+            </div>
 
             <button type="submit" className="primary-btn">
               Login
