@@ -6,82 +6,59 @@
   align-items: center;
 }
 
-/* LEFT SIDE (menu + logo + text) */
+/* LEFT SIDE */
 .header-left {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-/* HAMBURGER MENU */
-.menu-icon {
+/* NAV CONTAINER — THIS IS THE KEY FIX */
+.header nav {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  cursor: pointer;
-}
-
-.menu-icon span {
-  width: 22px;
-  height: 2px;
-  background-color: white;
-  border-radius: 2px;
-}
-
-/* LOGO */
-.logo-img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: white;
-  padding: 2px;
-}
-
-.logo-text {
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
+  align-items: center;
+  gap: 30px;          /* 👈 proper spacing */
 }
 
 /* NAV LINKS */
-.header a {
-  margin: 0 10px;
+.header nav a,
+.header nav span {
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
+/* HOVER EFFECT (OPTIONAL, MATCHES CLEAN UI) */
+.header nav a:hover,
+.header nav span:hover {
+  opacity: 0.85;
+}
+
+.menu-icon { display: flex; flex-direction: column; gap: 4px; cursor: pointer; } .menu-icon span { width: 22px; height: 2px; background-color: white; border-radius: 2px; }
 /* REGISTER BUTTON */
 .btn-register {
-  background: rgb(43, 41, 41);
+  background: #1d1c1c;
+  color: #000;
   border: none;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
-  color: white;
+  font-weight: 600;
 }
 
 /* LOGOUT BUTTON */
 .btn-logout {
-  background: white;
+  background: #ffffff;
+  color: #000;
   border: none;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
 }
 
 /* PROFILE ICON */
-
-.profile-icon {
-  display: inline-block;
-  margin: 0 10px;
-  font-size: 18px;
-}
-
-.clickable {
-  cursor: pointer;
-}
-
-.clickable:hover {
-  transform: scale(1.1);
-}
+.profile-icon { display: inline-block; margin: 0 10px; font-size: 18px; } .clickable { cursor: pointer; } .clickable:hover { transform: scale(1.1); }
+.logo-img { width: 36px; height: 36px; border-radius: 50%; background: white; padding: 2px; } .logo-text { color: white; font-size: 18px; font-weight: 600; }

@@ -5,23 +5,24 @@ function HeaderAfterLogin() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // 1️⃣ Clear authentication
     localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("userRole"); // optional
+    localStorage.removeItem("userRole");
 
-    // 2️⃣ Go to FIRST (landing) page
     navigate("/", { replace: true });
+
+    // ✅ ensure UI resets
+    window.location.reload();
   };
 
   return (
     <header className="header">
-        <div className="header-left">
-        {/* HAMBURGER MENU */}
+      <div className="header-left">
         <div className="menu-icon">
           <span></span>
           <span></span>
           <span></span>
         </div>
+
         <img src="/logo.png" alt="Logo" className="logo-img" />
         <span className="logo-text">Career and Education Advisor</span>
       </div>
@@ -32,7 +33,7 @@ function HeaderAfterLogin() {
         <Link to="/resources">Resources</Link>
         <Link to="/about">About us</Link>
 
-        <span className="profile-icon clickable">👤</span>
+        <span className="profile-icon">👤</span>
 
         <button onClick={handleLogout} className="btn-logout">
           Logout

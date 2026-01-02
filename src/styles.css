@@ -525,3 +525,54 @@ button {
   border-top: 2px solid black;
 
 }
+/* ================= AFTER LOGIN HOME STYLES ================= */
+
+.welcome-text {
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.start-quiz-btn {
+  background: #9cffc1;
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 35px;
+}
+.home-content {
+  text-align: center;
+  padding: 40px 20px;
+}
+.main-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+.main-desc {
+  max-width: 850px;
+  margin: 0 auto 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.section-heading {
+  text-align: left;
+  max-width: 900px;
+  margin: 0 auto 15px;
+}
+.steps-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.step-box {
+  border: 1px solid #999;
+  padding: 12px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.step-box p {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
