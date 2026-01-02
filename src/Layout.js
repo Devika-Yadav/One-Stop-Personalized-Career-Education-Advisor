@@ -4,20 +4,24 @@ import HeaderAfterLogin from "./components/HeaderAfterLogin";
 import "./components/Footer.css";
 
 function Layout() {
-  const isAuthenticated = localStorage.getItem("isAuthenticated");
   const location = useLocation();
 
-  // Pages where header & footer should NOT appear
+  // ✅ always get a real boolean
+  const isAuthenticated =
+    localStorage.getItem("isAuthenticated") === "true";
+
+  // ❌ Pages without header & footer
   const authPages = ["/login", "/register"];
   const hideLayout = authPages.includes(location.pathname);
 
   return (
     <>
       {/* HEADER */}
-      {!hideLayout &&
-        (isAuthenticated ? <HeaderAfterLogin /> : <HeaderBeforeLogin />)}
+      {!hideLayout && (
+        isAuthenticated ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
+      )}
 
-      {/* PAGE CONTENT */}
+      {/* MAIN CONTENT */}
       <main>
         <Outlet />
       </main>
@@ -46,6 +50,5 @@ function Footer() {
     </footer>
   );
 }
-
 
 export default Layout;
