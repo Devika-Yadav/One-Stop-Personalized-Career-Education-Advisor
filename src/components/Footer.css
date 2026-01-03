@@ -1,3 +1,13 @@
+/* PAGE LAYOUT */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+}
 .footer {
   background: #000;
   color: #fff;
@@ -17,7 +27,7 @@
 .footer-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;      /* right aligned */
+  align-items: flex-end;
   line-height: 1.4;
 }
 
@@ -29,6 +39,6 @@
 }
 
 .copyright-text {
-  white-space: nowrap;        /* FORCE single line */
+  white-space: nowrap;
   font-size: 14px;
 }

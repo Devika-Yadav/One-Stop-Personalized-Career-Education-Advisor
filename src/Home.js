@@ -1,18 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ ADDED
 import "./styles.css";
 
 export default function Home() {
+  const navigate = useNavigate(); // ✅ ADDED
+
   const isAuthenticated =
     localStorage.getItem("isAuthenticated") === "true";
 
-  // ✅ NEW STATE (before login only)
   const [showInstitutionPopup, setShowInstitutionPopup] = useState(false);
   const [showResourcePopup, setShowResourcePopup] = useState(false);
+
+  // ✅ ONLY NEW LOGIC (navigation)
+  const handleStartQuiz = () => {
+    if (isAuthenticated) {
+      navigate("/quiz");      // after login
+    } else {
+      navigate("/register");  // before login
+    }
+  };
 
   return (
     <main className="home-content">
       {isAuthenticated ? (
-        /* ================= AFTER LOGIN (NO CHANGE) ================= */
+        /* ================= AFTER LOGIN (NO UI CHANGE) ================= */
         <>
           <p className="welcome-text">Welcome, User</p>
 
@@ -28,7 +39,8 @@ export default function Home() {
             college recommendations—all in one place.
           </p>
 
-          <button className="start-quiz-btn">
+          {/* ✅ SAME BUTTON – ONLY onClick added */}
+          <button className="start-quiz-btn" onClick={handleStartQuiz}>
             START QUIZ →
           </button>
 
@@ -78,7 +90,7 @@ export default function Home() {
           </div>
         </>
       ) : (
-        /* ================= BEFORE LOGIN (POPUPS ADDED) ================= */
+        /* ================= BEFORE LOGIN (NO UI CHANGE) ================= */
         <>
           <h1>One-Stop Personalized Career &amp; Education Advisor</h1>
 
@@ -88,9 +100,11 @@ export default function Home() {
             and academic background.
           </p>
 
-          <button className="primary-btn">START QUIZ</button>
+          {/* ✅ SAME BUTTON – ONLY onClick added */}
+          <button className="primary-btn" onClick={handleStartQuiz}>
+            START QUIZ
+          </button>
 
-          {/* ✅ CLICKABLE LINKS */}
           <div className="info-links">
             <span
               className="info-link"
@@ -99,7 +113,6 @@ export default function Home() {
                 setShowResourcePopup(false);
               }}
             >
-              
             </span>
 
             <span
@@ -109,11 +122,9 @@ export default function Home() {
                 setShowInstitutionPopup(false);
               }}
             >
-              
             </span>
           </div>
 
-          {/* ✅ INSTITUTIONS POPUP */}
           {showInstitutionPopup && (
             <div className="info-popup">
               Provides detailed information about colleges, universities,
@@ -124,7 +135,6 @@ export default function Home() {
             </div>
           )}
 
-          {/* ✅ RESOURCES POPUP */}
           {showResourcePopup && (
             <div className="info-popup">
               Offers curated learning materials, references, and guidance
@@ -135,7 +145,6 @@ export default function Home() {
             </div>
           )}
 
-          {/* EXISTING SECTIONS BELOW – UNCHANGED */}
           <section className="why-section">
             <h3>Why Career Advisor?</h3>
 

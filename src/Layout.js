@@ -15,20 +15,19 @@ function Layout() {
   const hideLayout = authPages.includes(location.pathname);
 
   return (
-    <>
+    <div className="page-wrapper">
       {/* HEADER */}
-      {!hideLayout && (
-        isAuthenticated ? <HeaderAfterLogin /> : <HeaderBeforeLogin />
-      )}
+      {!hideLayout &&
+        (isAuthenticated ? <HeaderAfterLogin /> : <HeaderBeforeLogin />)}
 
       {/* MAIN CONTENT */}
-      <main>
+      <main className="page-content">
         <Outlet />
       </main>
 
       {/* FOOTER */}
       {!hideLayout && <Footer />}
-    </>
+    </div>
   );
 }
 
@@ -42,8 +41,8 @@ function Footer() {
       </div>
 
       <div className="footer-right">
-        <p>For guidance purposes only</p>
-        <p>
+        <p className="guidance-text">For guidance purposes only</p>
+        <p className="copyright-text">
           © 2025 Career & Education Advisor | Academic Project | All Rights Reserved
         </p>
       </div>
