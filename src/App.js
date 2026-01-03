@@ -6,10 +6,10 @@ import About from "./About";
 import Login from "./Login";
 import Register from "./Register";
 import ForgotPassword from "./ForgotPassword";
-
+import QuizIntermediate from "./QuizIntermediate";
 import QuizStart from "./QuizStart";
 import Quiz10th from "./Quiz10th";
-import QuizIntermediate from "./QuizIntermediate"; // ✅ ADD THIS
+import QuizCollege from "./QuizCollege";
 
 function App() {
   return (
@@ -21,10 +21,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* ✅ QUIZ FLOW */}
         <Route path="/quiz" element={<QuizStart />} />
         <Route path="/quiz/10th" element={<Quiz10th />} />
         <Route path="/quiz/intermediate" element={<QuizIntermediate />} />
+        <Route path="/quiz/college" element={<QuizCollege />} />
       </Route>
     </Routes>
   );

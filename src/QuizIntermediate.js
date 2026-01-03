@@ -6,13 +6,13 @@ function QuizIntermediate() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
 
-  const questionData = quizQuestionsIntermediate[currentQuestion];
   const totalQuestions = quizQuestionsIntermediate.length;
+  const questionData = quizQuestionsIntermediate[currentQuestion];
 
   const handleOptionClick = (option) => {
-    const updatedAnswers = [...answers];
-    updatedAnswers[currentQuestion] = option;
-    setAnswers(updatedAnswers);
+    const updated = [...answers];
+    updated[currentQuestion] = option;
+    setAnswers(updated);
   };
 
   const handleNext = () => {
@@ -24,13 +24,14 @@ function QuizIntermediate() {
     if (currentQuestion < totalQuestions - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      alert("Quiz completed!");
-      console.log("Final Answers:", answers);
+      alert("Intermediate Quiz Completed!");
+      console.log("Intermediate Answers:", answers);
     }
   };
 
   return (
     <div className="quiz-page">
+      {/* QUESTION BOX */}
       <div className="quiz-container">
         <h4>{questionData.question}</h4>
 
@@ -48,6 +49,7 @@ function QuizIntermediate() {
           ))}
         </div>
 
+        {/* NEXT / FINISH BUTTON (RIGHT INSIDE BOX) */}
         <div className="quiz-actions">
           <button
             className={`next-btn ${
@@ -60,6 +62,7 @@ function QuizIntermediate() {
         </div>
       </div>
 
+      {/* QUESTION COUNT OUTSIDE BOX */}
       <div className="question-count">
         Question {currentQuestion + 1} of {totalQuestions}
       </div>

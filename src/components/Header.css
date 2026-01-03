@@ -37,7 +37,6 @@
   opacity: 0.85;
 }
 
-.menu-icon { display: flex; flex-direction: column; gap: 4px; cursor: pointer; } .menu-icon span { width: 22px; height: 2px; background-color: white; border-radius: 2px; }
 /* REGISTER BUTTON */
 .btn-register {
   background: #1d1c1c;
