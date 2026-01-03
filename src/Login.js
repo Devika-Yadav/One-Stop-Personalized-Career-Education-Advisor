@@ -1,47 +1,75 @@
 // Login.js
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase"; // ✅ correct path
 import "./styles.css";
 
 export default function Login() {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (!role) {
-      alert("Please select a role");
+      setError("Please select a role");
       return;
     }
 
-    // ✅ Set authentication state
-    localStorage.setItem("isAuthenticated", "true");
-    localStorage.setItem("userRole", role);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-    // Redirect after login
-    navigate("/");
+      // Save auth + role
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userRole", role);
+      localStorage.setItem("userEmail", userCredential.user.email);
+
+      navigate("/"); // redirect after login
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
     <div className="page">
-      {/* LEFT SIDE IMAGE */}
+      {/* LEFT IMAGE */}
       <div className="left-panel">
         <img src="/login.jpg" alt="Login illustration" />
       </div>
 
-      {/* RIGHT SIDE FORM CARD */}
+      {/* RIGHT FORM */}
       <div className="right-panel">
         <div className="card">
           <h2>Login</h2>
 
+          {error && <p className="error-text">{error}</p>}
+
           <form onSubmit={handleLogin}>
             <label>Email:</label>
-            <input type="email" required />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
             <label>Password:</label>
-            <input type="password" required />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
             <div className="small-text">
               Forget Password? <Link to="/forgot-password">Click here</Link>
