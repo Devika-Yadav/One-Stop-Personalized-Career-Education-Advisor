@@ -16,7 +16,7 @@ function HeaderBeforeLogin() {
     <>
       <header className="header">
         <div className="header-left">
-          <img src="/logo.png" alt="Logo" className="logo-img" />
+          <img src="/logo.png" alt="C&E Logo" className="logo-img" />
           <span className="logo-text">Career and Education Advisor</span>
         </div>
 

@@ -10,6 +10,8 @@ import QuizIntermediate from "./QuizIntermediate";
 import QuizStart from "./QuizStart";
 import Quiz10th from "./Quiz10th";
 import QuizCollege from "./QuizCollege";
+import Profile from "./Profile";
+
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/quiz/10th" element={<Quiz10th />} />
         <Route path="/quiz/intermediate" element={<QuizIntermediate />} />
         <Route path="/quiz/college" element={<QuizCollege />} />
+        <Route path="/profile" element={<Profile />} />
+
       </Route>
     </Routes>
   );

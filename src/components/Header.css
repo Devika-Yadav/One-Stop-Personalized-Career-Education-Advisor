@@ -60,4 +60,11 @@
 
 /* PROFILE ICON */
 .profile-icon { display: inline-block; margin: 0 10px; font-size: 18px; } .clickable { cursor: pointer; } .clickable:hover { transform: scale(1.1); }
-.logo-img { width: 36px; height: 36px; border-radius: 50%; background: white; padding: 2px; } .logo-text { color: white; font-size: 18px; font-weight: 600; }
+.logo-text { color: white; font-size: 18px; font-weight: 600; }
+.logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 70%;
+  object-fit: cover;
+     /* ✅ removes white */
+}

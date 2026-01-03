@@ -23,7 +23,7 @@ function HeaderAfterLogin() {
           <span></span>
         </div>
 
-        <img src="/logo.png" alt="Logo" className="logo-img" />
+        <img src="/logo.png" alt="C&E Logo" className="logo-img" />
         <span className="logo-text">Career and Education Advisor</span>
       </div>
 
@@ -33,7 +33,14 @@ function HeaderAfterLogin() {
         <Link to="/resources">Resources</Link>
         <Link to="/about">About us</Link>
 
-        <span className="profile-icon">👤</span>
+        <span
+  className="profile-icon clickable"
+  title="Profile"
+  onClick={() => navigate("/profile")}
+>
+  👤
+</span>
+
 
         <button onClick={handleLogout} className="btn-logout">
           Logout
