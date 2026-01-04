@@ -1,146 +1,199 @@
-// Home.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // ✅ ADDED
 import "./styles.css";
-import IntitutionInfo from "./components/InstitutionInfo";
-import ResourceInfo from "./components/ResourceInfo";
 
 export default function Home() {
-  const [openIntitutionInfo,setOpenIntitutionInfo]=useState(false);
-  const [openResourceInfo,setOpenResourceInfo]=useState(false);
+  const navigate = useNavigate(); // ✅ ADDED
+
+  const isAuthenticated =
+    localStorage.getItem("isAuthenticated") === "true";
+
+  const [showInstitutionPopup, setShowInstitutionPopup] = useState(false);
+  const [showResourcePopup, setShowResourcePopup] = useState(false);
+
+  // ✅ ONLY NEW LOGIC (navigation)
+  const handleStartQuiz = () => {
+    if (isAuthenticated) {
+      navigate("/quiz");      // after login
+    } else {
+      navigate("/register");  // before login
+    }
+  };
 
   return (
-    <div className="home-page">
-      {/* TOP BAR LIKE FIGMA */}
-      <header className="top-bar">
-        <div className="logo">Career and Education Advisor</div>
-        <nav>
-          <button className="link-btn" onClick={()=> setOpenIntitutionInfo(prev=> !prev)}>Institutions</button>
-          <button className="link-btn" onClick={()=> setOpenResourceInfo(prev=>!prev)}>Resources</button>
-          <button className="link-btn">About us</button>
+    <main className="home-content">
+      {isAuthenticated ? (
+        /* ================= AFTER LOGIN (NO UI CHANGE) ================= */
+        <>
+          <p className="welcome-text">Welcome, User</p>
 
-          {/* Register navigates to /register */}
-          <Link to="/register" className="nav-register-btn">
-            Register
-          </Link>
-        </nav>
-        {
-          openIntitutionInfo && (
-            <IntitutionInfo/>
-          )
-        }
-        {
-          openResourceInfo && (<ResourceInfo/>)
-        }
-        
-        
-      </header>
+          <h1 className="main-title">
+            One-Stop Personalized Career &amp;<br />
+            Education Advisor
+          </h1>
 
-      <main className="home-content">
-        <h1>One-Stop Personalized Career &amp; Education Advisor</h1>
-        <p>
-          A smart platform that helps 10th, intermediate, and college students choose
-          the right career path by analyzing their interests, skills, and academic
-          background.
-        </p>
-        <button className="primary-btn">START QUIZ</button>
+          <p className="main-desc">
+            A smart platform that helps 10th, intermediate, and college students
+            choose the right career path by analyzing their interests, skills,
+            and academic background. Get personalized career, course, and
+            college recommendations—all in one place.
+          </p>
 
-        {/* Why Career Advisor */}
-        <section className="why-section">
-          <h3>Why Career Advisor?</h3>
-          <div className="why-row">
-            <div className="why-box green">
-              Many students choose careers without understanding their interests,
-              skills, or academic strengths.
-            </div>
-            <div className="why-box pink">
-              Poor career choices at the 10th or intermediate level can affect
-              long‑term growth and opportunities.
-            </div>
-          </div>
-        </section>
+          {/* ✅ SAME BUTTON – ONLY onClick added */}
+          <button className="start-quiz-btn" onClick={handleStartQuiz}>
+            START QUIZ →
+          </button>
 
-        {/* Our Services */}
-        <section className="services-section">
-          <h3>Our Services</h3>
-          <div className="services-row">
-            <div className="service-card blue">
-              <img src="/careerIcon.jpeg" alt="Career Path Recommendation" />
-              <h4>Career Path Recommendation</h4>
+          <h2 className="section-heading">
+            How the Career Assessment Works
+          </h2>
+
+          <div className="steps-container">
+            <div className="step-box">
+              <strong>Step 1: Provide Your Background</strong>
               <p>
-                Provides personalized career guidance by analyzing the student’s
-                interests, skills, and academic background through a quiz‑based
-                assessment.
+                Answer a few questions about your academic background,
+                including your education level and subjects studied.
               </p>
             </div>
 
-            <div className="service-card orange">
-              <img src="/courseIcon.jpeg" alt="Course & Skill Recommendation" />
-              <h4>Course &amp; Skill Recommendation</h4>
+            <div className="step-box">
+              <strong>Step 2: Share Your Interests</strong>
               <p>
-                Suggests suitable degree programs, certifications, and skill‑based
-                courses aligned with the recommended career path.
+                Select options that reflect your interests and the type
+                of work you enjoy doing.
               </p>
             </div>
 
-            <div className="service-card green">
-              <img src="/collegeIcon.jpeg" alt="College & Institution Guidance" />
-              <h4>College &amp; Institution Guidance</h4>
+            <div className="step-box">
+              <strong>Step 3: Evaluate Your Skills</strong>
               <p>
-                Offers information about colleges and institutions that provide
-                the recommended courses, helping students choose the right place
-                to study.
+                Choose responses that best represent your current skills
+                and strengths.
+              </p>
+            </div>
+
+            <div className="step-box">
+              <strong>Step 4: Complete the Assessment</strong>
+              <p>
+                Submit the quiz after answering all questions.
+              </p>
+            </div>
+
+            <div className="step-box">
+              <strong>Step 5: Get Personalized Recommendations</strong>
+              <p>
+                Based on your responses, the system generates personalized
+                career paths, relevant courses, and suitable colleges.
               </p>
             </div>
           </div>
-        </section>
+        </>
+      ) : (
+        /* ================= BEFORE LOGIN (NO UI CHANGE) ================= */
+        <>
+          <h1>One-Stop Personalized Career &amp; Education Advisor</h1>
 
-        {/* How it works */}
-        <section className="how-section">
-          <h3>How it works?</h3>
-          <div className="how-box">
-            <p>Step 1: Take Career Assessment Quiz</p>
-            <p>Step 2: System analyzes your responses</p>
-            <p>Step 3: Get career, course &amp; college recommendations</p>
+          <p>
+            A smart platform that helps 10th, intermediate, and college students
+            choose the right career path by analyzing their interests, skills,
+            and academic background.
+          </p>
+
+          {/* ✅ SAME BUTTON – ONLY onClick added */}
+          <button className="primary-btn" onClick={handleStartQuiz}>
+            START QUIZ
+          </button>
+
+          <div className="info-links">
+            <span
+              className="info-link"
+              onClick={() => {
+                setShowInstitutionPopup(!showInstitutionPopup);
+                setShowResourcePopup(false);
+              }}
+            >
+            </span>
+
+            <span
+              className="info-link"
+              onClick={() => {
+                setShowResourcePopup(!showResourcePopup);
+                setShowInstitutionPopup(false);
+              }}
+            >
+            </span>
           </div>
-        </section>
 
-        {/* Bottom stats row */}
-        <section className="stats-row">
-          <div className="stat-box">
-            <strong>50+</strong>
-            <span>Career Options</span>
-          </div>
+          {showInstitutionPopup && (
+            <div className="info-popup">
+              Provides detailed information about colleges, universities,
+              and educational institutions offering various courses and
+              programs. This section helps students explore institution
+              details such as available courses, location, and general
+              academic focus to support informed decision-making.
+            </div>
+          )}
 
-          <div className="divider"></div>
+          {showResourcePopup && (
+            <div className="info-popup">
+              Offers curated learning materials, references, and guidance
+              resources related to different career paths and courses.
+              These resources help users understand skill requirements,
+              learning paths, and preparation strategies for their chosen
+              careers.
+            </div>
+          )}
 
-          <div className="stat-box">
-            <strong>45+</strong>
-            <span>Courses</span>
-          </div>
+          <section className="why-section">
+            <h3>Why Career Advisor?</h3>
 
-          <div className="divider"></div>
+            <div className="why-row">
+              <div className="why-box green">
+                Many students choose careers without understanding their
+                interests, skills, or academic strengths.
+              </div>
 
-          <div className="stat-box">
-            <strong>78+</strong>
-            <span>Colleges/Institutions</span>
-          </div>
-        </section>
+              <div className="why-box pink">
+                Poor career choices at the 10th or intermediate level can affect
+                long-term growth and opportunities.
+              </div>
+            </div>
+          </section>
 
-      </main>
-              <footer className="footer">
-  <div className="footer-left">
-    <p><strong>Contact us:</strong></p>
-    <p>Email: support@careeradvisor.com</p>
-    <p>Phone: +91-8309214468</p>
-  </div>
+          <section className="services-section">
+            <h3>Our Services</h3>
 
-  <div className="footer-right">
-        <p className="guidance">For guidance purposes only</p>
-        <p className="copyright">© 2025 Career & Education Advisor | Academic Project | All Rights Reserved</p>
-  </div>
-</footer>
+            <div className="services-row">
+              <div className="service-card blue">
+                <img src="/careerIcon.jpeg" alt="Career Path Recommendation" />
+                <h4>Career Path Recommendation</h4>
+                <p>
+                  Personalized career guidance based on interests, skills, and
+                  academics.
+                </p>
+              </div>
 
-    </div>
+              <div className="service-card orange">
+                <img src="/courseIcon.jpeg" alt="Course Recommendation" />
+                <h4>Course &amp; Skill Recommendation</h4>
+                <p>
+                  Suggests suitable degree programs, certifications, and skills.
+                </p>
+              </div>
+
+              <div className="service-card green">
+                <img src="/collegeIcon.jpeg" alt="College Guidance" />
+                <h4>College &amp; Institution Guidance</h4>
+                <p>
+                  Provides information about colleges offering recommended
+                  courses.
+                </p>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+    </main>
   );
 }

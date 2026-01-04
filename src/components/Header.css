@@ -1,0 +1,70 @@
+.header {
+  background: #5ec8f2;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LEFT SIDE */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* NAV CONTAINER — THIS IS THE KEY FIX */
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;          /* 👈 proper spacing */
+}
+
+/* NAV LINKS */
+.header nav a,
+.header nav span {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* HOVER EFFECT (OPTIONAL, MATCHES CLEAN UI) */
+.header nav a:hover,
+.header nav span:hover {
+  opacity: 0.85;
+}
+
+/* REGISTER BUTTON */
+.btn-register {
+  background: #1d1c1c;
+  color: #000;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* LOGOUT BUTTON */
+.btn-logout {
+  background: #ffffff;
+  color: #000;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* PROFILE ICON */
+.profile-icon { display: inline-block; margin: 0 10px; font-size: 18px; } .clickable { cursor: pointer; } .clickable:hover { transform: scale(1.1); }
+.logo-text { color: white; font-size: 18px; font-weight: 600; }
+.logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 70%;
+  object-fit: cover;
+     /* ✅ removes white */
+}
