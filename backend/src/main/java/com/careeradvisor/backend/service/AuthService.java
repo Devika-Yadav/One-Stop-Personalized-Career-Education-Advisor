@@ -27,15 +27,19 @@ public class AuthService {
 
     public void signup(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setRole("STUDENT"); // force default role
         repo.save(user);
     }
 
-    public String login(String username, String password) {
+    public String login(String email, String password) {
 
         authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password));
+                new UsernamePasswordAuthenticationToken(email, password)
+        );
 
-        User user = repo.findByUsername(username).get();
-        return jwtUtil.generateToken(user.getUsername(), user.getRole());
+        User user = repo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return jwtUtil.generateToken(user.getEmail(), user.getRole());
     }
 }

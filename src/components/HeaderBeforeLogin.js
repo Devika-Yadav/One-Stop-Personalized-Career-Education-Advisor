@@ -77,12 +77,14 @@ function HeaderBeforeLogin() {
 
       {/* RESOURCES POPUP */}
       {showResource && (
+        <div className="dropdown-wrapper">
         <div className="dropDownDescR">
           Offers curated learning materials, references, and guidance
           resources related to different career paths and courses.
           These resources help users understand skill requirements,
           learning paths, and preparation strategies for their chosen
           careers.
+        </div>
         </div>
       )}
     </>

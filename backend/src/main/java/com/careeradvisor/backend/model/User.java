@@ -3,7 +3,6 @@ package com.careeradvisor.backend.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -11,20 +10,29 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    @Column(nullable = false)
-    private String username;
 
     @Column(unique = true, nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String password;
 
-    private String role;
+    @Column(nullable = false)
+    private String role = "STUDENT"; // default role
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    // Getters & Setters
+    public Long getUserId() {
+        return userId;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -41,27 +49,5 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-// Getters and Setters
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 }
