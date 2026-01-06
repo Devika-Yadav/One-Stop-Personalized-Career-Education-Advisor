@@ -16,3 +16,21 @@ frontend/build/
 
 # OS
 .DS_Store
+
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+
+# H2 database files
+*.mv.db
+*.trace.db
+
+# Environment / secrets
+.env
+application-prod.yml
