@@ -45,6 +45,7 @@ function HeaderAfterLogin() {
         <button onClick={handleLogout} className="btn-logout">
           Logout
         </button>
+        
       </nav>
     </header>
   );

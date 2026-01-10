@@ -6,6 +6,7 @@ function HeaderBeforeLogin() {
   const [showInstitution, setShowInstitution] = useState(false);
   const [showResource, setShowResource] = useState(false);
 
+  
   // ✅ close all popups (single source of truth)
   const closePopups = () => {
     setShowInstitution(false);

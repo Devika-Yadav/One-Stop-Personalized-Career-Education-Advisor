@@ -33,8 +33,11 @@ export default function Login() {
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("userRole", role);
       localStorage.setItem("userEmail", userCredential.user.email);
-
-      navigate("/"); // redirect after login
+      if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       setError(err.message);
     }

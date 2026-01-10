@@ -1,15 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "./firebase";
 import { deleteUser } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./styles.css";
 
 function Profile() {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [user, setUser] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  // 🔑 Detect admin viewing a student
+  const isAdminView = location.state?.viewUser === true;
+  const viewedUser = location.state?.user;
+
   useEffect(() => {
+    // ADMIN viewing STUDENT
+    if (isAdminView && viewedUser) {
+      setUser({
+        name: viewedUser.name,
+        email: viewedUser.email || "student@example.com",
+        role: "student",
+      });
+      return;
+    }
+
+    // NORMAL logged-in user (admin or student)
     const currentUser = auth.currentUser;
 
     if (!currentUser) {
@@ -18,22 +35,22 @@ function Profile() {
     }
 
     setUser({
-      name: currentUser.displayName,
+      name: currentUser.displayName || "User",
       email: currentUser.email,
+      role: localStorage.getItem("userRole"),
     });
-  }, [navigate]);
+  }, [navigate, isAdminView, viewedUser]);
 
+  // ❌ Admin must NOT delete student accounts from here
   const handleDeleteAccount = async () => {
+    if (isAdminView) return;
+
     try {
       const currentUser = auth.currentUser;
 
       if (currentUser) {
         await deleteUser(currentUser);
-
-        // Clear local storage
         localStorage.clear();
-
-        // Go to before-login home page
         navigate("/", { replace: true });
       }
     } catch (error) {
@@ -60,15 +77,26 @@ function Profile() {
 
         <div className="profile-row">
           <span className="label">Role:</span>
-          <span>{localStorage.getItem("userRole")}</span>
+          <span>{user.role}</span>
         </div>
 
         <div className="profile-buttons">
-          <button className="delete-btn" onClick={() => setShowConfirm(true)}>
-            Delete Account
-          </button>
+          {/* ❌ Hide delete button when admin views student */}
+          {!isAdminView && (
+            <button
+              className="delete-btn"
+              onClick={() => setShowConfirm(true)}
+            >
+              Delete Account
+            </button>
+          )}
 
-          <button className="back-btn" onClick={() => navigate(-1)}>
+          <button
+            className="back-btn"
+            onClick={() =>
+              isAdminView ? navigate("/admin") : navigate(-1)
+            }
+          >
             Back
           </button>
         </div>
@@ -81,7 +109,10 @@ function Profile() {
             <p>Are you sure you want to delete your account?</p>
 
             <div className="confirm-actions">
-              <button className="confirm-delete" onClick={handleDeleteAccount}>
+              <button
+                className="confirm-delete"
+                onClick={handleDeleteAccount}
+              >
                 Delete
               </button>
               <button
