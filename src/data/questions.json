@@ -1,0 +1,65 @@
+{
+  "10th": {
+    "goal": "stream_recommendation",
+    "questions": [
+      { "key": "interest_math", "type": "rating", "label": "How much do you like Mathematics?" },
+      { "key": "interest_physics", "type": "rating", "label": "How much do you like Physics?" },
+      { "key": "interest_chemistry", "type": "rating", "label": "How much do you like Chemistry?" },
+      { "key": "interest_biology", "type": "rating", "label": "How much do you like Biology?" },
+      { "key": "interest_commerce", "type": "rating", "label": "How much do you like Commerce/Accounts?" },
+      { "key": "logical_thinking", "type": "rating", "label": "Your logical thinking ability" },
+      { "key": "memorization", "type": "rating", "label": "Comfort with theory & memorization" },
+      { "key": "practical_learning", "type": "rating", "label": "Preference for hands-on learning" },
+      { "key": "exam_tolerance", "type": "rating", "label": "Comfort with exams & competition" },
+      { "key": "long_study", "type": "rating", "label": "Willingness for long-term studies" }
+    ]
+  },
+
+  "Intermediate_BiPC": {
+    "goal": "medical_and_life_science",
+    "questions": [
+      { "key": "biology_interest", "type": "rating", "label": "Interest in Biology" },
+      { "key": "patient_care", "type": "rating", "label": "Interest in patient care" },
+      { "key": "lab_work", "type": "rating", "label": "Interest in laboratory work" },
+      { "key": "stress_tolerance", "type": "rating", "label": "Ability to handle stress" },
+      { "key": "research_interest", "type": "rating", "label": "Interest in research" },
+      { "key": "field_work", "type": "rating", "label": "Field or outdoor work interest" },
+      { "key": "ethics_empathy", "type": "rating", "label": "Empathy & ethics" },
+      { "key": "memorization", "type": "rating", "label": "Comfort with memorization" },
+      { "key": "long_study", "type": "rating", "label": "Willingness for long studies" },
+      { "key": "govt_exam", "type": "rating", "label": "Interest in government exams" }
+    ]
+  },
+
+  "Intermediate_MPC": {
+    "goal": "engineering_and_tech",
+    "questions": [
+      { "key": "coding_interest", "type": "rating", "label": "Interest in coding" },
+      { "key": "math_strength", "type": "rating", "label": "Strength in Mathematics" },
+      { "key": "physics_interest", "type": "rating", "label": "Interest in Physics" },
+      { "key": "problem_solving", "type": "rating", "label": "Problem-solving ability" },
+      { "key": "statistics_interest", "type": "rating", "label": "Interest in statistics & data" },
+      { "key": "design_interest", "type": "rating", "label": "Design & creativity interest" },
+      { "key": "hands_on", "type": "rating", "label": "Hands-on engineering work" },
+      { "key": "research_interest", "type": "rating", "label": "Research inclination" },
+      { "key": "management_interest", "type": "rating", "label": "Management & leadership interest" },
+      { "key": "govt_exam", "type": "rating", "label": "Interest in govt technical exams" }
+    ]
+  },
+
+  "Engineering": {
+    "goal": "final_career_roles",
+    "questions": [
+      { "key": "coding_level", "type": "rating", "label": "Coding proficiency" },
+      { "key": "core_interest", "type": "rating", "label": "Interest in core engineering" },
+      { "key": "data_interest", "type": "rating", "label": "Interest in data & analytics" },
+      { "key": "research_interest", "type": "rating", "label": "Research / higher studies interest" },
+      { "key": "govt_job_interest", "type": "rating", "label": "Interest in government jobs" },
+      { "key": "business_interest", "type": "rating", "label": "Interest in business/startups" },
+      { "key": "leadership", "type": "rating", "label": "Leadership ability" },
+      { "key": "risk_taking", "type": "rating", "label": "Risk-taking ability" },
+      { "key": "communication", "type": "rating", "label": "Communication skills" },
+      { "key": "long_term_goal", "type": "rating", "label": "Long-term career planning" }
+    ]
+  }
+}
