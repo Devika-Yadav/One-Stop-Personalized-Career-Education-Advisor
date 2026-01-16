@@ -39,7 +39,7 @@ const InstitutionsAdmin = () => {
     const id = e.target.value;
     if (!id) return;
 
-    const inst = institutions.find(i => i.institutionId === id);
+    const inst = institutions.find(i => i.institutionId == id);
 
     setSelectedId(inst.institutionId);
     setIsEdit(true);

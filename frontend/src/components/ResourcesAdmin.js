@@ -31,7 +31,7 @@ const ResourcesAdmin = () => {
     const id = e.target.value;
     if (!id) return;
 
-    const resource = resources.find(r => r.resourceId === id);
+    const resource = resources.find(r => r.resourceId == id);
 
     setSelectedId(resource.resourceId);
     setIsEdit(true);
