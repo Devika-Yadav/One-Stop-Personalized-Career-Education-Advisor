@@ -42,4 +42,15 @@ public class AuthService {
 
         return jwtUtil.generateToken(user.getEmail(), user.getRole());
     }
+    public User getUserByEmail(String email) {
+        return repo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    // Delete user by email
+    public void deleteUser(String email) {
+        User user = repo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        repo.delete(user);
+    }
 }

@@ -23,20 +23,7 @@ public class InstitutionController {
     public List<Institution> getAllInstitutions(){
         return institutionService.getAllInstitutions();
     }
-//    @GetMapping("/byName")
-//    public List<Institution> getInstitutionByName(@RequestParam String name) {
-//        return institutionService.getInstitutionByName(name);
-//    }
-//
-//    @GetMapping("/byStream")
-//    public List<Institution> getInstitutionsByStream(@RequestParam String stream) {
-//        return institutionService.getInstitutionsByStream(stream);
-//    }
-//
-//    @GetMapping("/byLocation")
-//    public List<Institution> getInstitutionsByLocation(@RequestParam String location) {
-//        return institutionService.getInstitutionsByLocation(location);
-//    }
+
 
     @GetMapping("/search")
     public List<Institution> searchInstitutions(@RequestParam String keyword) {
@@ -58,8 +45,18 @@ public class InstitutionController {
 
         return institutionService.updateInstitution(id, institution);
     }
-
-
-
-
 }
+//    @GetMapping("/byName")
+//    public List<Institution> getInstitutionByName(@RequestParam String name) {
+//        return institutionService.getInstitutionByName(name);
+//    }
+//
+//    @GetMapping("/byStream")
+//    public List<Institution> getInstitutionsByStream(@RequestParam String stream) {
+//        return institutionService.getInstitutionsByStream(stream);
+//    }
+//
+//    @GetMapping("/byLocation")
+//    public List<Institution> getInstitutionsByLocation(@RequestParam String location) {
+//        return institutionService.getInstitutionsByLocation(location);
+//    }

@@ -36,7 +36,7 @@ function HeaderAfterAdminLogin() {
   />
           </span>
 
-          <button onClick={logout}>Logout</button>
+          <button className='btn-register' onClick={logout}>Logout</button>
         </div>
       </header>
 

@@ -27,4 +27,22 @@ public class AuthController {
         String token = service.login(req.get("email"), req.get("password"));
         return Map.of("token", token);
     }
+    @PostMapping("/profile")
+    public Map<String, String> getUserDetails(@RequestBody Map<String, String> req) {
+        String email = req.get("email");
+
+        User user = service.getUserByEmail(email);
+
+        return Map.of(
+                "name", user.getEmail(), // add a real name field if you want
+                "email", user.getEmail(),
+                "role", user.getRole()
+        );
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteAccount(@RequestParam String email) {
+        service.deleteUser(email);
+        return "User account deleted successfully";
+    }
 }

@@ -1,4 +1,21 @@
 /* ---------- Global ---------- */
+/* ===== STICKY FOOTER LAYOUT ===== */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.app-layout {
+  min-height: 100vh;        /* full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;                  /* pushes footer down */
+}
 
 * {
   box-sizing: border-box;

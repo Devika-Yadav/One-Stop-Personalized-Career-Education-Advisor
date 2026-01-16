@@ -17,6 +17,7 @@
   font-size: 22px;
   cursor: pointer;       /* ✅ shows hand cursor */
   user-select: none;
+  color: white;
 }
 
 .logo {
