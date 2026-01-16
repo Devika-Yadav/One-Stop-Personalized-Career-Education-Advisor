@@ -1,0 +1,20 @@
+# Python / ML
+__pycache__/
+venv/
+.env
+*.pkl
+*.h5
+*.pt
+data/
+
+# FastAPI
+.env
+*.sqlite3
+
+# Node / React (if any)
+node_modules/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
