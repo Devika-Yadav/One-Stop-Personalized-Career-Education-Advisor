@@ -1,0 +1,7 @@
+com\example\careeradvisor\dto\CareerRequestDTO.class
+com\example\careeradvisor\CareerAdvisorApplication.class
+com\example\careeradvisor\controller\TestController.class
+com\example\careeradvisor\config\AppConfig.class
+com\example\careeradvisor\service\MLService.class
+com\example\careeradvisor\controller\CareerController.class
+com\example\careeradvisor\service\RoadmapService.class
