@@ -1,6 +1,6 @@
 import { useState } from "react";
 import quizQuestions10th from "./QuizQuestions10th";
-import "./styles.css";
+// import "./styles.css";
 
 function QuizAssessment10th() {
   const [currentQuestion, setCurrentQuestion] = useState(0);

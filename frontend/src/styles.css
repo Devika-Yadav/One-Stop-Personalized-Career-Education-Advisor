@@ -1127,6 +1127,11 @@ button {
   background: white;
   cursor: pointer;
 }
+.continue-btn:hover{
+  background-color: #4aa3ff;
+  color: white;
+  font-weight: bold;
+}
 /*----10th------*/
 .options-grid {
   display: grid;
@@ -1143,10 +1148,15 @@ button {
   cursor: pointer;
 }
 .option-btn:hover {
-  background-color: #ed9fcb;
+  background-color: #908c8e;
+  color: white;
+  font-weight: bold;
 }
 .option-btn.selected {
-  background: #f4b7ee;
+  /* background: #f4b7ee; */
+  background-color: #908c8e;
+  color: white;
+  font-weight: bold;
 }
 
 .question-count {
@@ -1175,7 +1185,10 @@ button {
   cursor: pointer;
 }
 .next-btn:hover {
-  background-color: #f4acd6;
+  /* background-color: #f4acd6; */
+  background-color: #4aa3ff;
+  color: white;
+  font-weight: bold;
 }
 .finish-btn {
   background-color: #d9fdd3;   /* light green */

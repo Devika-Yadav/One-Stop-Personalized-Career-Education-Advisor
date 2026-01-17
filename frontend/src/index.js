@@ -14,6 +14,11 @@ import ProtectedRoute from "./ProtectedRoute";
 import Institutions from "./components/Institutions";
 import Resources from "./components/Resources";
 import Profile from "./Profile";
+// import SelectEducationLevel from "./components/SelectEducationLevel";
+import QuizStart from "./components/QuizStart";
+import QuizAssessment10th from "./components/QuizAssessment10th";
+import QuizAssessmentIntermediate from "./components/QuizAssessmentIntermediate";
+import QuizAssessmentCollege from "./components/QuizAssessmentCollege";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -26,7 +31,12 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/quiz" element={<QuizStart/>}/>
+        <Route path="/quiz/10th" element={<QuizAssessment10th/>}/>
+        <Route path="/quiz/intermediate" element={<QuizAssessmentIntermediate/>}/>
+        <Route path="/quiz/college" element={<QuizAssessmentCollege/>}/>
 
+        {/* <Route path="/assessment" element={<QuizStart/>}/> */}
         <Route
           path="/institutions"
           element={
