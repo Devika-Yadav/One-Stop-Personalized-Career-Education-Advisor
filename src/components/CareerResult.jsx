@@ -1,5 +1,5 @@
 export default function CareerResult({ result }) {
-  if (!result || !result.suggestion) {
+  if (!result || !result.career) {
     return <p>No prediction available</p>;
   }
 
@@ -8,7 +8,7 @@ export default function CareerResult({ result }) {
       <h2>🎯 Suggested Path</h2>
 
       <h3 style={{ color: "#4CAF50" }}>
-        {result.suggestion}
+        {result.career}
       </h3>
 
       <p>
