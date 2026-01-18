@@ -1,17 +1,59 @@
 import pandas as pd
 import random
 
+# ================= CONFIG =================
+
 N = 12000
-rows = []
 
 def r(a=1, b=5):
     return random.randint(a, b)
 
+rows = []
+
+# ✅ Allowed careers per education (CRITICAL FIX)
+ALLOWED_TARGETS = {
+    "10th": [
+        "Intermediate_MPC",
+        "Intermediate_BiPC",
+        "Commerce",
+        "Diploma",
+        "Arts"
+    ],
+    "Intermediate_BiPC": [
+        "Doctor",
+        "Pharmacist",
+        "Biotech Research",
+        "Nursing",
+        "Public Health"
+    ],
+    "Intermediate_MPC": [
+        "Software Engineer",
+        "Data Scientist",
+        "Mechanical Engineer",
+        "Civil Engineer",
+        "Research Scientist",
+        "Business Analyst"
+    ],
+    "Engineering": [
+        "Software Engineer",
+        "Data Scientist",
+        "Govt Engineer",
+        "Startup Founder",
+        "Product Manager",
+        "Research Engineer",
+        "Core Engineer"
+    ]
+}
+
+# ================= DATA GENERATION =================
+
 for _ in range(N):
-    edu = random.choice(["10th", "Intermediate_BiPC", "Intermediate_MPC", "Engineering"])
+    edu = random.choice(list(ALLOWED_TARGETS.keys()))
+
+    # Base row (only education)
     row = {"education": edu}
 
-    # ================== 10th ==================
+    # ====================== 10th ======================
     if edu == "10th":
         row.update({
             "interest_math": r(),
@@ -26,48 +68,36 @@ for _ in range(N):
             "long_study": r()
         })
 
-        # --- STREAM SCORES ---
-        score_mpc = (
-            row["interest_math"] * 2 +
-            row["interest_physics"] +
-            row["logical_thinking"] +
-            row["exam_tolerance"]
-        )
-
-        score_bipc = (
-            row["interest_biology"] * 2 +
-            row["interest_chemistry"] +
-            row["memorization"] +
-            row["long_study"]
-        )
-
-        score_commerce = (
-            row["interest_commerce"] * 2 +
-            row["logical_thinking"] +
-            row["exam_tolerance"]
-        )
-
-        score_diploma = (
-            row["practical_learning"] * 2 +
-            (6 - row["exam_tolerance"])
-        )
-
-        score_arts = (
-            (6 - row["exam_tolerance"]) +
-            (6 - row["long_study"])
-        )
-
         scores = {
-            "Intermediate_MPC": score_mpc,
-            "Intermediate_BiPC": score_bipc,
-            "Commerce": score_commerce,
-            "Diploma": score_diploma,
-            "Arts": score_arts
+            "Intermediate_MPC": (
+                row["interest_math"] +
+                row["interest_physics"] +
+                row["logical_thinking"] +
+                row["exam_tolerance"]
+            ),
+            "Intermediate_BiPC": (
+                row["interest_biology"] +
+                row["interest_chemistry"] +
+                row["memorization"] +
+                row["long_study"]
+            ),
+            "Commerce": (
+                row["interest_commerce"] +
+                row["logical_thinking"] +
+                row["exam_tolerance"]
+            ),
+            "Diploma": (
+                row["practical_learning"] +
+                (6 - row["exam_tolerance"])
+            ),
+            "Arts": (
+                (6 - row["exam_tolerance"]) +
+                (6 - row["long_study"]) +
+                (6 - row["logical_thinking"])
+            )
         }
 
-        row["target"] = max(scores, key=scores.get)
-
-    # ================== BiPC ==================
+    # ====================== BiPC ======================
     elif edu == "Intermediate_BiPC":
         row.update({
             "biology_interest": r(),
@@ -84,23 +114,23 @@ for _ in range(N):
 
         scores = {
             "Doctor": (
-                row["patient_care"] * 2 +
+                row["patient_care"] +
                 row["stress_tolerance"] +
                 row["long_study"]
             ),
             "Pharmacist": (
-                row["lab_work"] * 2 +
+                row["lab_work"] +
                 row["memorization"] +
                 row["biology_interest"]
             ),
             "Biotech Research": (
-                row["research_interest"] * 2 +
+                row["research_interest"] +
                 row["biology_interest"] +
                 row["long_study"]
             ),
             "Nursing": (
                 row["patient_care"] +
-                row["ethics_empathy"] * 2
+                row["ethics_empathy"]
             ),
             "Public Health": (
                 row["field_work"] +
@@ -109,9 +139,7 @@ for _ in range(N):
             )
         }
 
-        row["target"] = max(scores, key=scores.get)
-
-    # ================== MPC ==================
+    # ====================== MPC ======================
     elif edu == "Intermediate_MPC":
         row.update({
             "coding_interest": r(),
@@ -128,17 +156,17 @@ for _ in range(N):
 
         scores = {
             "Software Engineer": (
-                row["coding_interest"] * 2 +
+                row["coding_interest"] +
                 row["problem_solving"] +
                 row["math_strength"]
             ),
             "Data Scientist": (
-                row["statistics_interest"] * 2 +
+                row["statistics_interest"] +
                 row["math_strength"] +
                 row["problem_solving"]
             ),
             "Mechanical Engineer": (
-                row["hands_on"] * 2 +
+                row["hands_on"] +
                 row["physics_interest"]
             ),
             "Civil Engineer": (
@@ -147,18 +175,16 @@ for _ in range(N):
                 row["govt_exam"]
             ),
             "Research Scientist": (
-                row["research_interest"] * 2 +
+                row["research_interest"] +
                 row["math_strength"]
             ),
             "Business Analyst": (
-                row["management_interest"] * 2 +
+                row["management_interest"] +
                 row["problem_solving"]
             )
         }
 
-        row["target"] = max(scores, key=scores.get)
-
-    # ================== Engineering ==================
+    # ====================== Engineering ======================
     else:
         row.update({
             "coding_level": r(),
@@ -170,49 +196,58 @@ for _ in range(N):
             "leadership": r(),
             "risk_taking": r(),
             "communication": r(),
-            "long_term_goal": r()
+            "long_term_goal": r(),
+            "hands_on": r(),
+            "problem_solving": r()
         })
 
         scores = {
             "Software Engineer": (
-                row["coding_level"] * 2 +
-                row["problem_solving"] if "problem_solving" in row else row["coding_level"]
+                row["coding_level"] +
+                row["problem_solving"]
             ),
             "Data Scientist": (
-                row["data_interest"] * 2 +
+                row["data_interest"] +
                 row["coding_level"]
             ),
             "Govt Engineer": (
-                row["govt_job_interest"] * 2 +
+                row["govt_job_interest"] +
                 row["long_term_goal"]
             ),
             "Startup Founder": (
-                row["business_interest"] * 2 +
+                row["business_interest"] +
                 row["risk_taking"] +
                 row["leadership"]
             ),
             "Product Manager": (
-                row["leadership"] * 2 +
+                row["leadership"] +
                 row["communication"]
             ),
             "Research Engineer": (
-                row["research_interest"] * 2 +
+                row["research_interest"] +
                 row["long_term_goal"]
             ),
             "Core Engineer": (
-                row["core_interest"] * 2 +
-                row["hands_on"] if "hands_on" in row else row["core_interest"]
+                row["core_interest"] +
+                row["hands_on"]
             )
         }
 
-        row["target"] = max(scores, key=scores.get)
+    # ====================== TARGET SELECTION (SAFE) ======================
 
+    # 🔒 Enforce allowed careers per education
+    filtered_scores = {
+        k: v for k, v in scores.items()
+        if k in ALLOWED_TARGETS[edu]
+    }
+
+    row["target"] = max(filtered_scores, key=filtered_scores.get)
     rows.append(row)
 
-# ================== SAVE ==================
+# ====================== SAVE ======================
 
 df = pd.DataFrame(rows)
 df.to_csv("career_dataset_final.csv", index=False)
 df.to_excel("career_dataset_final.xlsx", index=False)
 
-print("✅ Realistic dataset generated with multi-feature scoring")
+print("✅ Dataset generated with STRICT education-based career eligibility")

@@ -1,22 +1,26 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import numpy as np
 import joblib
+import pandas as pd
 
-# ---------------- LOAD MODEL ----------------
+# ================= LOAD MODEL BUNDLE =================
 
-model = joblib.load("model.pkl")
-edu_encoder = joblib.load("edu_encoder.pkl")
-feature_columns = joblib.load("feature_columns.pkl")
+bundle = joblib.load("model.pkl")
 
-app = FastAPI(title="Career Guidance ML Service")
+model = bundle["model"]
+edu_encoder = bundle["edu_encoder"]
+target_encoder = bundle["target_encoder"]
+FEATURES = bundle["features"]
 
-# ---------------- INPUT SCHEMA ----------------
+# ================= APP =================
 
-class CareerInput(BaseModel):
+app = FastAPI(title="Career Prediction ML Service")
+
+# ================= REQUEST SCHEMA =================
+
+class CareerRequest(BaseModel):
     education: str
 
-    # 10th
     interest_math: int = 0
     interest_physics: int = 0
     interest_chemistry: int = 0
@@ -28,7 +32,6 @@ class CareerInput(BaseModel):
     exam_tolerance: int = 0
     long_study: int = 0
 
-    # BiPC
     biology_interest: int = 0
     patient_care: int = 0
     lab_work: int = 0
@@ -38,7 +41,6 @@ class CareerInput(BaseModel):
     ethics_empathy: int = 0
     govt_exam: int = 0
 
-    # MPC
     coding_interest: int = 0
     math_strength: int = 0
     physics_interest: int = 0
@@ -48,7 +50,6 @@ class CareerInput(BaseModel):
     hands_on: int = 0
     management_interest: int = 0
 
-    # Engineering
     coding_level: int = 0
     core_interest: int = 0
     data_interest: int = 0
@@ -60,44 +61,24 @@ class CareerInput(BaseModel):
     long_term_goal: int = 0
 
 
-# ---------------- PREDICT ----------------
-
 @app.post("/predict")
-def predict(data: CareerInput):
+def predict(data: CareerRequest):
 
-    # Encode education
     edu_encoded = edu_encoder.transform([data.education])[0]
 
-    # Build feature dict dynamically
-    feature_dict = data.dict()
-    feature_dict["education_encoded"] = edu_encoded
-    feature_dict.pop("education")
+    row = {"education": edu_encoded}
+    for f in FEATURES:
+        if f != "education":
+            row[f] = getattr(data, f, 0)
 
-    # Align feature order
-    X = np.array([[feature_dict.get(col, 0) for col in feature_columns]])
+    X = pd.DataFrame([row])[FEATURES]
 
-    # Predict probabilities
     probs = model.predict_proba(X)[0]
-    classes = model.classes_
+    classes = target_encoder.inverse_transform(range(len(probs)))
 
-# Convert to dict
-    prob_map = dict(zip(classes, probs))
-
-    suggestion = max(prob_map, key=prob_map.get)
-    confidence = prob_map[suggestion] * 100
-
-# 🔴 POST-ML ADJUSTMENT FOR 10th
-    if data.education == "10th":
-        commerce_score = data.interest_commerce
-        math_score = data.interest_math
-        physics_score = data.interest_physics
-        chemistry_score = data.interest_chemistry
-    # Strong commerce preference & weak science
-    if commerce_score >= 4 and math_score >= 4 and physics_score <= 3 and chemistry_score <= 3:
-        suggestion = "Commerce"
-        confidence = max(confidence, 65.0)
+    best_idx = probs.argmax()
 
     return {
-        "suggestion": suggestion,
-        "confidence": round(confidence, 2)
+        "career": classes[best_idx],
+        "confidence": round(probs[best_idx] * 100, 2)
     }
