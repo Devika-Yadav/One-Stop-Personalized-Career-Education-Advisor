@@ -13,6 +13,7 @@ export default function CareerForm() {
   const handleEducationSelect = (edu) => {
     setEducation(edu);
     setAnswers({});
+    setResult(null);
   };
 
   const handleRatingChange = (key, value) => {
@@ -38,6 +39,7 @@ export default function CareerForm() {
 
       const data = await res.json();
       console.log("Backend response:", data);
+
       setResult(data);
     } catch (err) {
       alert("Prediction failed");
