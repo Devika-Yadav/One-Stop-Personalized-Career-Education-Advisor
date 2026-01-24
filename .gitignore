@@ -1,2 +1,10 @@
-# Created by venv; see https://docs.python.org/3/library/venv.html
-*
+dataset/
+*.xls
+*.xlsx
+
+ml_service/
+ml-service/
+*.csv
+*.pkl
+*.h5
+*.joblib
