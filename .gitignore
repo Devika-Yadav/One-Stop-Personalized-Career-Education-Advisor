@@ -1,10 +1,7 @@
-dataset/
-*.xls
-*.xlsx
-
-ml_service/
-ml-service/
-*.csv
-*.pkl
-*.h5
-*.joblib
+# dataset/
+# ml_service/
+# backend/data/
+# backend/target/
+# frontend/node_modules/
+# *.xlsx
+# *.xls
