@@ -2,7 +2,6 @@ package com.careeradvisor.backend.service;
 
 import com.careeradvisor.backend.model.User;
 import com.careeradvisor.backend.repository.UserRepository;
-import com.careeradvisor.backend.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +9,9 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private final UsersRepository usersRepository;
+    private final UserRepository usersRepository;
 
-    public UserService(UsersRepository usersRepository) {
+    public UserService(UserRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 

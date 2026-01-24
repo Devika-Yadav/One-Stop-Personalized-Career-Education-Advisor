@@ -1,7 +1,7 @@
 package com.careeradvisor.backend.service;
 
 import com.careeradvisor.backend.model.User;
-import com.careeradvisor.backend.repository.UserRepository;
+import com.careeradvisor.backend.repository.AuthRepository;
 import com.careeradvisor.backend.security.JwtUtil;
 import org.springframework.security.authentication.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    private final UserRepository repo;
+    private final AuthRepository repo;
     private final PasswordEncoder encoder;
     private final AuthenticationManager authManager;
     private final JwtUtil jwtUtil;
 
-    public AuthService(UserRepository repo,
+    public AuthService(AuthRepository repo,
                        PasswordEncoder encoder,
                        AuthenticationManager authManager,
                        JwtUtil jwtUtil) {
@@ -42,6 +42,7 @@ public class AuthService {
 
         return jwtUtil.generateToken(user.getEmail(), user.getRole());
     }
+
     public User getUserByEmail(String email) {
         return repo.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));

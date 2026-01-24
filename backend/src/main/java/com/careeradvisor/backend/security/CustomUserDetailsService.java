@@ -1,16 +1,16 @@
 package com.careeradvisor.backend.security;
 
 import com.careeradvisor.backend.model.User;
-import com.careeradvisor.backend.repository.UserRepository;
+import com.careeradvisor.backend.repository.AuthRepository;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository repo;
+    private final AuthRepository repo;
 
-    public CustomUserDetailsService(UserRepository repo) {
+    public CustomUserDetailsService(AuthRepository repo) {
         this.repo = repo;
     }
 
